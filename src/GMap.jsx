@@ -86,6 +86,7 @@ class GMap extends React.Component {
     this.fetchData();
   }
 
+  //this fetches the sneaker stores in Montreal from our shoestagram API retail_shops endpoint 
   fetchData(){
     console.log("before fetching");
 
@@ -106,14 +107,23 @@ class GMap extends React.Component {
 
   // Toggle to 'true' to show InfoWindow and re-renders component
   handleMarkerClick(targetMarker){
+
     this.setState({
       markers: this.state.markers.map( marker => {
+        if (marker.showInfo === true ) {
+          return {
+            ...marker,
+            showInfo: false
+          };
+        } //closes any infowindow that's open
+
         if(marker === targetMarker){
           return {
             ...marker,
             showInfo: true
           };
         }
+
         return marker;
       })
     }); //closing brackets for this.setState
