@@ -3,6 +3,36 @@ import {GoogleMap, Marker, InfoWindow, withGoogleMap} from "react-google-maps";
 //REFERENCE: https://github.com/tomchentw/react-google-maps
 
 
+//==================GLOBAL RE-USABLE FUNCTIONS===============================
+function toLatLng(geo_loc){
+    //var array = "45 -73".split(" ").map(element => +element); //returns [45, -73]
+    var array = geo_loc.split(" ")
+                .map(element => +element);
+                
+    var latLng = {lat: array[0], lng: array[1]};
+    return latLng;
+}
+
+function formatMarkers(store){
+  return {
+    position: toLatLng(store.geo_loc),
+    showInfo: false,
+    infoContent: (
+            <div id="content">
+              <div id="siteNotice"></div>
+              <h1 id="firstHeading" class="firstHeading">{store.supplier_name}</h1>
+              <div id="bodyContent">
+                <p>{store.address}</p>
+                <p>{store.city}, {store.province}</p>
+                <p>{store.tel}</p>
+              </div>
+            </div>
+          )
+  };  
+}
+
+//===========================================================================
+
 //React allows you if you have a component that just renders something, to pass it as a function
 //in the case of tomchentw's react-google-map wrapper, you're passing the function SimpleMap to withGoogleMap and it's a higher order function
 
@@ -45,70 +75,34 @@ class GMap extends React.Component {
         lat: 45.502057,
         lng: -73.57153917
       },
-      defaultAnimation: 2,
-      // array of objects of markers
-      markers: [
-        {
-          position: {lat: 45.503307, lng: -73.56968049999999},
-          showInfo: false,
-          infoContent: (
-            <div id="content">
-              <div id="siteNotice"></div>
-              <h1 id="firstHeading" class="firstHeading">New Balance Montreal</h1>
-              <div id="bodyContent">
-                <p>654 Rue Sainte-Catherine O</p>
-                <p>Montreal, QC</p>
-                <p>514-844-2777</p>
-              </div>
-            </div>
-          ),
-        },
-        {
-          position: {lat: 45.4983057, lng: -73.57463},
-          showInfo: false,
-          infoContent: (
-            <div id="content">
-              <div id="siteNotice"></div>
-              <h1 id="firstHeading" class="firstHeading">Adidas Originals Montreal</h1>
-              <div id="bodyContent">
-                <p>1238 Rue Sainte-Catherine O</p>
-                <p>Montreal, QC</p>
-                <p>514-844-2777</p>
-              </div>
-            </div>
-          )
-        }
-      ]
+      defaultAnimation: 2
     };
 
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
     this.handleMarkerClose = this.handleMarkerClose.bind(this);
   }
 
-  // componentDidMount(){
-  //   this.fetchData();
-  // }
+  componentDidMount(){
+    this.fetchData();
+  }
 
-  // fetchData(){
-  //   this.setState({
-  //     loading: true
-  //   });
+  fetchData(){
+    console.log("before fetching");
 
-  //   console.log("before fetching");
+    fetch(`https://cors-anywhere.herokuapp.com/http://shoestagram-allendecodemtl.c9users.io/retail_shops`)
+    .then(response => response.json())
+    .then(function(data){
 
-  //   fetch(`https://cors-anywhere.herokuapp.com/http://shoestagram-allendecodemtl.c9users.io/retail_shops`)
-  //   .then(response => response.json())
-  //   .then(function(data){
+      console.log(data);
 
-  //     console.log(data);
+      var markerArray = data.map(formatMarkers);
 
-  //     //upon fetching, insert marker data
-  //     this.setState({
-  //       stores: data,
-  //       loading: false
-  //     });
-  //   }.bind(this));
-  // }
+      //upon fetching, insert marker data
+      this.setState({
+        markers: markerArray
+      });
+    }.bind(this));
+  }
 
   // Toggle to 'true' to show InfoWindow and re-renders component
   handleMarkerClick(targetMarker){
