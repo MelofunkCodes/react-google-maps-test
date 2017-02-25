@@ -14,6 +14,7 @@ function toLatLng(geo_loc){
 }
 
 function formatMarkers(store){
+  console.log("store name: ", store.supplier_name);
   return {
     position: toLatLng(store.geo_loc),
     showInfo: false,
@@ -22,6 +23,7 @@ function formatMarkers(store){
               <div id="siteNotice"></div>
               <h1 id="firstHeading" class="firstHeading">{store.supplier_name}</h1>
               <div id="bodyContent">
+                <h1>{store.supplier_name}</h1>
                 <p>{store.address}</p>
                 <p>{store.city}, {store.province}</p>
                 <p>{store.tel}</p>
@@ -144,10 +146,11 @@ class GMap extends React.Component {
   }
 
   render(){
+    //containerElement and mapElement used to be 400px by 400px
     return (
       <SneakerMap
-        containerElement={<div style={{width: 400, height: 400}}/>}
-        mapElement={<div style={{width: 400, height: 400}}/>}
+        containerElement={<div className="sneaker-map-container" style={{width: `100%`, height: `100%`, position: `relative`, margin: `0 auto`, overflow: `hidden`}}/>}
+        mapElement={<div className="sneaker-map" style={{width: `100%`, height: `100%`, position: `absolute`}}/>}
         center={this.state.center}
         markers={this.state.markers}
         onMarkerClick={this.handleMarkerClick}
@@ -158,3 +161,5 @@ class GMap extends React.Component {
 }
 
 export default GMap;
+
+//NOTE: copied CSS styling for SneakerMap from https://www.ostraining.com/blog/coding/responsive-google-maps/
