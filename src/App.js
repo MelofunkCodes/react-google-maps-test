@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// import Container from './Container';
-// import Home from './Home';
 import GMap from './GMap';
+import Accordian from './Accordian';
+import Collap from './Collap';
 
 
 class App extends Component {
@@ -16,9 +16,15 @@ class App extends Component {
           <h2>Google Maps tester</h2>
         </div>
         <p className="App-intro">
-          Testing out Google Maps API on React...
+          Testing out react-collapsible
         </p>
-        <GMap />
+        <p> blah</p>
+        <p> blah</p>
+        <p> blah</p>
+        <p> blah</p>
+        <p> blah</p>
+        <br />
+        <Collap />
 
       </div>
     );
