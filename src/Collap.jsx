@@ -4,22 +4,31 @@ import Scroll from 'react-scroll';
 
 import './Collap.css';
 import GMap from './GMap';
+import Frame from './Frame';
 
 
-// var Link       = Scroll.Link;
-// var Element    = Scroll.Element;
-// var Events     = Scroll.Events;
-var scroll     = Scroll.animateScroll;
-// var scrollSpy  = Scroll.scrollSpy;
+var scroll = Scroll.animateScroll;
 
+class Collap extends React.Component{
+  constructor(){
+    super();
 
-var Collap = React.createClass({
+    this.state={
+      showIframe: false
+    };
+  }
 
-  scrollTo: function() {
+  onClick(){
+    this.setState({
+      showIframe: true
+    });
+  }
+
+  scrollTo() {
     scroll.scrollTo(500);
-  },
+  }
 
-  render: function() {
+  render() {
     return(
       <div>
 
@@ -32,14 +41,15 @@ var Collap = React.createClass({
         triggerClassName="CustomTriggerCSS"
         triggerOpenedClassName="CustomTriggerCSS--open"> 
           <p>Add the prop of <strong style={{fontWeight: 'bold'}}>lazyRender</strong> and the content will only be rendered when the trigger is pressed</p>
-          <a href="https://www.amazon.com/Nike-Womens-Black-White-Running/dp/B01AJ65EBO/ref=sr_1_12?s=apparel&ie=UTF8&qid=1488137498&sr=1-12&nodeID=7147440011&keywords=nike+women%27s+air+max" target="iframe_a">
             <div>
               Amazon
               Nike AirMax Women's 7
               $79.99 USD
-              <div className="linkButton"><i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+              <div className="linkButton" onClick={this.onClick.bind(this)}><i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
+            
+            {this.state.showIframe ? <Frame src="https://www.amazon.com/Nike-Womens-Black-White-Running/dp/B01AJ65EBO/ref=sr_1_12?s=apparel&ie=UTF8&qid=1488137498&sr=1-12&nodeID=7147440011&keywords=nike+women%27s+air+max" /> : null}
             </div>
-           </a> 
+
          
           <a href="https://www.amazon.com">
             <div>
@@ -76,5 +86,5 @@ var Collap = React.createClass({
       </div>
     );
   }
-});
+}
 export default Collap;

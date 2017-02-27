@@ -1,0 +1,26 @@
+#cboxClose {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    width: 38px;
+    height: 19px;
+}
+
+.container {
+    margin-top: 20px;
+    background: #aaa;
+    position: absolute;
+    top: 0; right:0; bottom: 0; left:0;
+    z-index: 4000;
+}
+
+.whitebox {
+    border: 2px solid #a1a0a0;
+    background: #fff;
+}
+
+.iframe-box {
+	width: 500px;
+	height: 500px;
+}

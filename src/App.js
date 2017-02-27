@@ -5,6 +5,7 @@ import './App.css';
 import GMap from './GMap';
 import Accordian from './Accordian';
 import Collap from './Collap';
+import Frame from './Frame';
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
         <p> blah</p>
         <br />
         <Collap />
+
 
       </div>
     );
