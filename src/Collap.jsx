@@ -19,14 +19,15 @@ var Collap = React.createClass({
         triggerClassName="CustomTriggerCSS"
         triggerOpenedClassName="CustomTriggerCSS--open"> 
           <p>Add the prop of <strong style={{fontWeight: 'bold'}}>lazyRender</strong> and the content will only be rendered when the trigger is pressed</p>
-          <a href="https://www.amazon.com">
+          <a href="https://www.amazon.com/Nike-Womens-Black-White-Running/dp/B01AJ65EBO/ref=sr_1_12?s=apparel&ie=UTF8&qid=1488137498&sr=1-12&nodeID=7147440011&keywords=nike+women%27s+air+max" target="iframe_a">
             <div>
               Amazon
               Nike AirMax Women's 7
               $79.99 USD
               <div className="linkButton"><i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i></div>
             </div>
-          </a>
+           </a> 
+         
           <a href="https://www.amazon.com">
             <div>
               Ebay

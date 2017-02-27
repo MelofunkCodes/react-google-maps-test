@@ -23,7 +23,6 @@ function formatMarkers(store){
               <div id="siteNotice"></div>
               <h1 id="firstHeading" class="firstHeading">{store.supplier_name}</h1>
               <div id="bodyContent">
-                <h1>{store.supplier_name}</h1>
                 <p>{store.address}</p>
                 <p>{store.city}, {store.province}</p>
                 <p>{store.tel}</p>
