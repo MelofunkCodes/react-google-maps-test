@@ -1,16 +1,29 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
+import Scroll from 'react-scroll';
 
 import './Collap.css';
 import GMap from './GMap';
 
+
+// var Link       = Scroll.Link;
+// var Element    = Scroll.Element;
+// var Events     = Scroll.Events;
+var scroll     = Scroll.animateScroll;
+// var scrollSpy  = Scroll.scrollSpy;
+
+
 var Collap = React.createClass({
 
+  scrollTo: function() {
+    scroll.scrollTo(500);
+  },
 
   render: function() {
     return(
       <div>
 
+        <a onClick={this.scrollTo.bind(this)}>
         <Collapsible lazyRender 
         transitionTime={600} 
         trigger="Buy Online" 
@@ -45,7 +58,9 @@ var Collap = React.createClass({
             </div>
           </a>
         </Collapsible>
+        </a>
 
+        <a onClick={this.scrollTo.bind(this)}>
         <Collapsible lazyRender
         transitionTime={400} 
         trigger="Buy In Store" 
@@ -56,6 +71,7 @@ var Collap = React.createClass({
             <GMap />
           </div>
         </Collapsible>
+        </a>
 
       </div>
     );
